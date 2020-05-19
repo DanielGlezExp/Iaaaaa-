@@ -1,0 +1,1 @@
+Para compilar y ejecutar la práctica, se encuentra un MakeFile en la carpeta build, y el ejecutable creado tendrá el nombre "cebo_ejecutable" y se encontrará en la carpeta build. Los ficheros creados (aprendizaje.txt y aprendizajelog.txt) se encontrarán en la raíz del proyecto

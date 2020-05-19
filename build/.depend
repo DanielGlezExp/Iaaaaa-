@@ -1,0 +1,6 @@
+main.o: ../src/main.cpp ../src/DataBase/DataBase.hpp \
+ ../src/DataBase/../Titulo/Titulo.hpp \
+ ../src/DataBase/../Titulo/../Token/Token.hpp \
+ ../src/DataBase/../Titulo/../Tokenizer/Tokenizer.hpp \
+ ../src/DataBase/../Vocabulario/Vocabulario.hpp \
+ ../src/DataBase/../Vocabulario/../Registro/Registro.hpp
