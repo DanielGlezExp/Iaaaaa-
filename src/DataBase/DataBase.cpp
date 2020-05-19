@@ -47,7 +47,7 @@ void DataBase::crearVocabulario(void) {
 }
 
 int DataBase::actualizarRegistros(void) {
-  /*registros_ = miVocabulario_.construirRegistros();
+  registros_ = miVocabulario_.construirRegistros();
   int totalPalabras = 0;
   for (int i = 0; i < titulos_.size(); i++) {
     for (int j = 0; j < titulos_[i].getTitulo().size(); j++) {
@@ -71,33 +71,29 @@ int DataBase::actualizarRegistros(void) {
   
   std::vector<Registro> dummy;
   int eliminadas = 0;
+  int unkCebo = 0;
+  int unkNoCebo = 0;
   for (int i = 0; i < registros_.size(); i++) {
     if (registros_[i].getNumApariciones() > aparicionesNecesarias_) {
-      registros_
-    }
-  }*/
-
-  registros_ = miVocabulario_.construirRegistros();
-  int totalPalabras = 0;
-  for (int i = 0; i < titulos_.size(); i++) {
-    for (int j = 0; j < titulos_[i].getTitulo().size(); j++) {
-      if (titulos_[i].getTitulo()[j].getTipo() == PALABRA) {
-        incrementar(titulos_[i].getTitulo()[j], titulos_[i].esCebo());
-        totalPalabras++;
-      }
-      totalPalabras++;
-    }
-    if (titulos_[i].esCebo()) {
-      titularesCebo_++;
+      dummy.push_back(registros_[i]);
     } else {
-      titularesNoCebo_++;
+      eliminadas++;
+      unkCebo += registros_[i].getAparicionesCebo();
+      unkNoCebo += registros_[i].getAparicionesNoCebo();
     }
   }
-  registros_.push_back(Registro(Token("UNKOWN", PALABRA)));
-  totalPalabras += titulos_.size();
-  for (int i = 0; i < registros_.size(); i++) {
-    registros_[i].setTotalesUnicas(totalPalabras, registros_.size() + 1);
+
+  Registro unkownRegister = Registro(Token("UNKOWN", PALABRA));
+  unkownRegister.setAparicionesCebo(unkCebo);
+  unkownRegister.setAparicionesNoCebo(unkNoCebo);
+
+  dummy.push_back(unkownRegister);
+
+  for (int i = 0; i < dummy.size(); i++) {
+    dummy[i].setTotalesUnicas(totalPalabras, dummy.size() + 1);
   }
+
+  registros_ = dummy;
 
   return totalPalabras;
 }

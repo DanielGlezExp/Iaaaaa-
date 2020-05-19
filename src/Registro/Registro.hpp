@@ -26,6 +26,14 @@ class Registro {
 
   int getNumApariciones() const {return frecCebo_ + frecNoCebo_;}
 
+  int getAparicionesCebo() const { return frecCebo_;}
+
+  int getAparicionesNoCebo() const { return frecNoCebo_;}
+
+  void setAparicionesCebo(int apariciones) {frecCebo_ = apariciones;}
+
+  void setAparicionesNoCebo(int apariciones) {frecNoCebo_ = apariciones;}
+
   bool operator == (const Token& token) {
     return token == miToken_;
   }
